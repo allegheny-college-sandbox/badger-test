@@ -1,0 +1,43 @@
+- README.md:
+  - description: No TODO markers left in README.md
+    category: Documentation
+    check: MatchFileFragment
+    options:
+      fragment: "TODO"
+      count: 0
+      exact: true
+- README.md:
+  - description: We need better headings
+    category: Documentation
+    check: CountMarkdownTags
+    options:
+      tag: heading
+      count: 2
+      exact: false
+
+- README.md:
+  - description: Have at least 3 TODOs
+    category: Documentation
+    check: MatchFileFragment
+    options:
+      fragment: "TODO"
+      count: 3
+      exact: false
+
+# Am I really that commited?
+
+- description: Make at least one commit, you moron
+  category: git
+  check: CountCommits
+  options:
+    count: 1
+- description: Make at least 10 commits, you moron
+  category: git
+  check: CountCommits
+  options:
+    count: 10
+- description: Make at least 15 commits, you moron
+  category: git
+  check: CountCommits
+  options:
+    count: 15

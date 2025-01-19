@@ -1,0 +1,39 @@
+on: [push]
+
+permissions: write-all
+
+jobs:
+  hello_wizard:
+    runs-on: ubuntu-latest
+    name: Badger, badger, badger, badger...
+    steps:
+      - name: Setup Python
+        if: always()
+        uses: actions/setup-python@v5.1.1
+        with:
+          python-version: 3.10.6
+      - name: Set up grading environment
+        run: |
+          sudo apt-get update
+          sudo apt install --only-upgrade python3-pip
+          sudo python -m pip install gatorgrade --ignore-installed PyYAML
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
+        if: always()
+      - name: Grade
+        id: grade
+        run: |
+          gatorgrade --config .gatorgrade.yml --report file json gatorgrade_summary.json
+        if: always()
+        env:
+          PIPENV_VENV_IN_PROJECT: 1
+          PIPENV_IGNORE_VIRTUALENVS: 1
+      - name: Badger
+        id: badger
+        uses: hellowhorl/badger@main
+        with:
+          grader-report: 'gatorgrade_summary.json'
+        if: always()
+    env:
+      GITHUB_REF_NAME: ${{ github.ref_name }}
+      GITHUB_TOKEN: ${{ secrets.ARBORIST }}
