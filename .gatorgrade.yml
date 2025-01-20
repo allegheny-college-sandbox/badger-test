@@ -29,15 +29,26 @@
 - description: Make at least one commit, you moron
   category: git
   check: CountCommits
+  badges:
+    - name: "Committed"
+      step: 1
+    - name: "Overly committed"
+      step: 1
   options:
     count: 1
 - description: Make at least 10 commits, you moron
   category: git
   check: CountCommits
+  badges:
+    - name: "Overly committed"
+      step: 2
   options:
     count: 10
 - description: Make at least 15 commits, you moron
   category: git
   check: CountCommits
+  badges:
+    - name: "Overly committed"
+      step: 3
   options:
     count: 15
