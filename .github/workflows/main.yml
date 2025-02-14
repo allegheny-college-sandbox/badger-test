@@ -32,6 +32,7 @@ jobs:
         id: badger
         uses: hellowhorl/badger@main
         with:
+          api-host: 'https://cooking.chompe.rs'
           grader-report: 'gatorgrade_summary.json'
         if: always()
     env:
